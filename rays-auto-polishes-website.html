@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ray's Auto Polishes — Detail Garage, Accra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #14110E;
+    --ink-soft: #241E16;
+    --panel: #1D1812;
+    --metal: #D8D2C4;
+    --brass: #B98A3D;
+    --brass-bright: #D4A758;
+    --wet: #46615A;
+    --paper: #F6F2E9;
+    --paper-dim: #EAE3D3;
+    --line: rgba(216, 210, 196, 0.14);
+    --line-dark: rgba(20, 17, 14, 0.12);
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    font-family: 'Work Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+  }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(20,17,14,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 74px;
+    color: var(--metal);
+    gap: 12px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-size: 17px; color: var(--paper);
+    white-space: nowrap;
+  }
+  .brand .mark{
+    width:32px; height:32px; border-radius:50%;
+    border: 1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 13px; color: var(--brass-bright); font-family:'Work Sans',sans-serif; font-weight:600;
+    flex-shrink: 0;
+  }
+  .brand .brand-text{ display:flex; flex-direction:column; line-height:1.3; }
+  .brand small{ font-family:'Work Sans',sans-serif; font-size:10px; letter-spacing:.08em; color: var(--metal); opacity:.7; font-weight:500; white-space:nowrap; }
+  nav ul{ list-style:none; display:flex; gap: 32px; font-size: 14px; }
+  nav ul a{ opacity:.85; transition: opacity .15s; }
+  nav ul a:hover{ opacity:1; color: var(--brass-bright); }
+  .nav-cta{
+    background: var(--brass); color: var(--ink); padding: 9px 18px;
+    border-radius: 3px; font-size: 13px; font-weight:600;
+    letter-spacing: .01em; white-space: nowrap; flex-shrink: 0;
+  }
+  .nav-links{ display:flex; align-items:center; gap:32px; }
+  @media (max-width: 760px){
+    .nav-links ul{ display:none; }
+  }
+  @media (max-width: 480px){
+    .wrap{ padding: 0 18px; }
+    .brand{ font-size: 15px; }
+    .brand .mark{ width:28px; height:28px; font-size:12px; }
+    .brand small{ font-size: 9px; }
+    .nav-cta{ padding: 9px 12px; font-size: 12px; }
+    .nav-cta .full-label{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+    padding: 88px 0 96px;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items:center;
+  }
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+  }
+  .badge-row{
+    display:flex; align-items:center; gap:10px; margin-bottom: 26px;
+    font-size: 13px; color: var(--metal);
+  }
+  .stars{ color: var(--brass-bright); letter-spacing: 1px; font-size:14px; }
+  .hero h1{
+    font-size: clamp(38px, 5.4vw, 62px);
+    color: var(--paper);
+    max-width: 11.5ch;
+  }
+  .hero h1 em{ font-style: italic; color: var(--brass-bright); }
+  .hero p.lede{
+    margin-top: 22px; font-size: 17px; color: var(--metal); max-width: 46ch;
+  }
+  .cta-row{ display:flex; gap:14px; margin-top: 34px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 13px 22px; border-radius: 3px; font-size: 14px; font-weight: 600;
+    border: 1px solid transparent; transition: transform .15s, background .15s;
+  }
+  .btn-primary{ background: var(--brass); color: var(--ink); }
+  .btn-primary:hover{ background: var(--brass-bright); transform: translateY(-1px); }
+  .btn-ghost{ border-color: rgba(216,210,196,0.35); color: var(--paper); }
+  .btn-ghost:hover{ border-color: var(--brass-bright); color: var(--brass-bright); }
+
+  /* Hero art: layered arcs suggesting a polished curved panel catching light */
+  .hero-art{ position: relative; height: 380px; }
+  .arc{
+    position:absolute; border-radius: 50%;
+  }
+  .arc-1{
+    width:520px; height:520px; right:-160px; top:-60px;
+    background: radial-gradient(circle at 32% 28%, rgba(212,167,88,0.55), rgba(212,167,88,0.02) 55%);
+    filter: blur(2px);
+  }
+  .arc-2{
+    width: 340px; height: 340px; right: 40px; top: 60px;
+    border: 1px solid rgba(216,210,196,0.18);
+    border-radius: 50%;
+  }
+  .arc-3{
+    width: 220px; height: 220px; right: 100px; top: 120px;
+    border: 1px solid rgba(212,167,88,0.4);
+    border-radius: 50%;
+  }
+  .sheen{
+    position:absolute; right: 62px; top: 168px;
+    width: 200px; height: 6px; border-radius: 4px;
+    background: linear-gradient(90deg, transparent, var(--brass-bright), transparent);
+    opacity: .8;
+  }
+  .rating-card{
+    position:absolute; left:0; bottom: 10px;
+    background: var(--panel); border:1px solid var(--line);
+    padding: 18px 22px; border-radius: 4px; width: 230px;
+  }
+  .rating-card .num{ font-family:'Fraunces',serif; font-size: 34px; color: var(--paper); }
+  .rating-card .stars{ margin: 4px 0 6px; }
+  .rating-card .sub{ font-size: 12.5px; color: var(--metal); }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 88px 0; }
+  .eyebrow{
+    font-size: 13px; color: var(--wet); font-weight:600; margin-bottom: 12px;
+  }
+  .section-head{ max-width: 620px; margin-bottom: 48px; }
+  .section-head h2{ font-size: clamp(28px, 3.6vw, 40px); }
+  .section-head p{ margin-top: 14px; font-size: 16px; color: #5c5546; }
+
+  /* ---------- Services ---------- */
+  .services{ background: var(--paper); }
+  .service-list{ border-top: 1px solid var(--line-dark); }
+  .service-row{
+    display:grid; grid-template-columns: 60px 1.4fr 2fr;
+    gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line-dark);
+    align-items: baseline;
+  }
+  @media (max-width: 700px){
+    .service-row{ grid-template-columns: 40px 1fr; }
+    .service-row .desc{ grid-column: 1 / -1; }
+  }
+  .service-row .idx{ font-family:'Fraunces',serif; font-size: 15px; color: var(--brass); }
+  .service-row h3{ font-size: 21px; font-weight: 500; }
+  .service-row .desc{ font-size: 15px; color: #5c5546; }
+
+  /* ---------- Why / features ---------- */
+  .why{ background: var(--ink-soft); color: var(--paper); }
+  .why .section-head p{ color: var(--metal); }
+  .why-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border:1px solid var(--line); }
+  @media (max-width: 760px){ .why-grid{ grid-template-columns: 1fr; } }
+  .why-card{ background: var(--ink-soft); padding: 32px 28px; }
+  .why-card .n{ font-family:'Fraunces',serif; color: var(--brass-bright); font-size:14px; margin-bottom:14px; }
+  .why-card h3{ font-size: 19px; color: var(--paper); margin-bottom: 10px; font-weight:500; }
+  .why-card p{ font-size: 14.5px; color: var(--metal); }
+
+  /* ---------- Testimonials ---------- */
+  .reviews{ background: var(--paper-dim); }
+  .review-summary{
+    display:flex; align-items:center; gap: 22px; margin-bottom: 46px;
+    flex-wrap: wrap;
+  }
+  .review-summary .big{ font-family:'Fraunces',serif; font-size: 52px; }
+  .review-summary .stars{ color: var(--brass); font-size: 18px; }
+  .review-summary .meta{ font-size: 14px; color:#6b6250; }
+  .review-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  }
+  @media (max-width: 860px){ .review-grid{ grid-template-columns: 1fr; } }
+  .review-card{
+    background: var(--paper); border: 1px solid var(--line-dark);
+    padding: 26px 24px; border-radius: 4px; display:flex; flex-direction:column;
+  }
+  .review-card .stars{ color: var(--brass); font-size: 14px; margin-bottom: 14px; }
+  .review-card p.quote{ font-size: 15px; color: var(--ink); flex:1; }
+  .review-card .who{
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line-dark);
+    font-size: 13px; color: #6b6250;
+  }
+  .review-card .who strong{ color: var(--ink); display:block; font-size: 14px; margin-bottom: 2px; }
+  .owner-reply{
+    margin-top: 14px; padding: 12px 14px; background: var(--paper-dim);
+    border-left: 2px solid var(--brass); font-size: 13px; color: #4a4436; font-style: italic;
+  }
+  .owner-reply span{ display:block; font-style: normal; font-weight:600; color: var(--ink); margin-bottom:4px; font-size:12px; }
+
+  /* ---------- Location / contact ---------- */
+  .visit{ background: var(--ink); color: var(--paper); }
+  .visit-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  }
+  @media (max-width: 800px){ .visit-grid{ grid-template-columns: 1fr; } }
+  .visit h2{ color: var(--paper); font-size: clamp(28px,3.6vw,38px); margin-bottom: 22px; }
+  .info-line{
+    display:flex; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line);
+  }
+  .info-line:last-child{ border-bottom: 1px solid var(--line); }
+  .info-line .label{ width: 110px; flex-shrink:0; font-size: 12.5px; letter-spacing:.04em; color: var(--brass-bright); text-transform: uppercase; padding-top:2px;}
+  .info-line .val{ font-size: 15.5px; color: var(--paper); }
+  .info-line .val a:hover{ color: var(--brass-bright); }
+  .info-line .sub{ font-size: 13px; color: var(--metal); margin-top: 4px; }
+  .map-card{
+    border: 1px solid var(--line); border-radius: 4px; overflow:hidden;
+    display:flex; flex-direction:column; justify-content: space-between;
+    background: var(--panel); padding: 30px;
+  }
+  .map-card .pin{
+    width:44px; height:44px; border-radius:50%; border:1.5px solid var(--brass-bright);
+    display:flex; align-items:center; justify-content:center; margin-bottom: 22px;
+    color: var(--brass-bright); font-size: 18px;
+  }
+  .map-card h3{ color: var(--paper); font-size: 20px; margin-bottom: 10px; font-weight:500;}
+  .map-card p{ color: var(--metal); font-size: 14px; margin-bottom: 22px; }
+
+  /* ---------- Footer ---------- */
+  footer{ background: var(--ink); border-top: 1px solid var(--line); padding: 36px 0; }
+  .foot-row{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+    color: var(--metal); font-size: 13px;
+  }
+  .foot-row .brand{ font-size:16px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <div class="mark">R</div>
+      <div class="brand-text">
+        Ray's Auto Polishes
+        <small>DETAIL GARAGE · ACCRA</small>
+      </div>
+    </div>
+    <div class="nav-links">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <a class="nav-cta" href="tel:0208420119"><span class="full-label">Call: </span>020 842 0119</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge-row">
+        <span class="stars">★★★★★</span>
+        <span>4.8 rating · 66 Google reviews</span>
+      </div>
+      <h1>The finish that holds up <em>after</em> the shine fades.</h1>
+      <p class="lede">Ceramic coating, engine steam cleaning, and hand-finished polishing for Accra's cars — the kind of detail work customers write ten-star reviews about.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:0208420119">Call to book — 020 842 0119</a>
+        <a class="btn btn-ghost" href="#visit">Get directions</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="arc arc-1"></div>
+      <div class="arc arc-2"></div>
+      <div class="arc arc-3"></div>
+      <div class="sheen"></div>
+      <div class="rating-card">
+        <div class="num">4.8</div>
+        <div class="stars">★★★★★</div>
+        <div class="sub">66 reviews on Google · Sakumo Cres, Accra</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">WHAT WE DO</div>
+      <h2>Detailing, done properly.</h2>
+      <p>The services our customers come back for and write home about — from a full ceramic hardening job to the engine bay steam clean that started it all.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-row">
+        <div class="idx">01</div>
+        <h3>Ceramic Coating (10H Hardening)</h3>
+        <div class="desc">A durable ceramic layer that protects your paintwork and keeps it looking freshly polished for the long haul — the service our reviews mention most.</div>
+      </div>
+      <div class="service-row">
+        <div class="idx">02</div>
+        <h3>Engine Steam Cleaning</h3>
+        <div class="desc">A thorough, careful steam clean of the engine bay — restoring it to a like-new look without harsh chemical run-off.</div>
+      </div>
+      <div class="service-row">
+        <div class="idx">03</div>
+        <h3>Auto Polishing & Paint Correction</h3>
+        <div class="desc">Hand-finished polishing that corrects swirl marks and restores depth to the paint before any protective coating goes on.</div>
+      </div>
+      <div class="service-row">
+        <div class="idx">04</div>
+        <h3>Waxing</h3>
+        <div class="desc">A traditional wax finish for that deep, wet-look shine — done by hand, panel by panel.</div>
+      </div>
+      <div class="service-row">
+        <div class="idx">05</div>
+        <h3>Full Interior & Exterior Detail</h3>
+        <div class="desc">A complete top-to-bottom detail — ask us which package fits your car and how it's driven.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="color:var(--brass-bright)">WHY RAY'S</div>
+      <h2>What customers keep coming back for.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="n">4.8 ★</div>
+        <h3>66 Google reviews</h3>
+        <p>A track record built one car at a time — read what customers actually say below.</p>
+      </div>
+      <div class="why-card">
+        <div class="n">10H</div>
+        <h3>Ceramic hardening</h3>
+        <p>The specific standard of coating customers searched us out for by name.</p>
+      </div>
+      <div class="why-card">
+        <div class="n">Est.</div>
+        <h3>Local, trusted garage</h3>
+        <p>A neighbourhood detail garage on Sakumo Crescent — not a franchise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="review-summary">
+      <div class="big">4.8</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="meta">Based on 66 Google reviews</div>
+      </div>
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"If I could give 10 stars on Google, I would. I found Ray's Auto Detail by way of an Instagram search for engine steam…"</p>
+        <div class="who"><strong>AkuaK</strong>9 reviews · 7 months ago</div>
+        <div class="owner-reply">
+          <span>Response from the owner</span>
+          Thanks so much for such a lovely feedback. We are moved by this review to keep up with the good works and strive to improve regardless. We can't wait to service you again.
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"I came across Ray's Auto Polishes in an online search about services that offer 10H ceramic hardening. After reading the glowing reviews, I decided to go with Ray's…"</p>
+        <div class="who"><strong>Ɔbenfo Ọbádélé Kambon</strong>Local Guide · 3 years ago</div>
+        <div class="owner-reply">
+          <span>Response from the owner</span>
+          Wow. We are pleased to receive such a concise feedback from you. Thanks for your support &amp; patronage in our business and also the referrals you keep sending our way. Thank you, Prof!
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"I recently had my car detailed by Ray's Auto and mehn — I was damn impressed with the service I received…"</p>
+        <div class="who"><strong>Larry Lamptey</strong>Local Guide · 3 years ago</div>
+        <div class="owner-reply">
+          <span>Response from the owner</span>
+          Hello Larry. Thanks for this review — it was a pleasure to serve you. Most grateful for passing through. And hey, you got a beautiful car.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <div class="eyebrow" style="color:var(--brass-bright)">VISIT THE GARAGE</div>
+      <h2>Come see the shine for yourself.</h2>
+
+      <div class="info-line">
+        <div class="label">Address</div>
+        <div class="val">H/No, A366/4 Sakumo Cres, Accra
+          <div class="sub">Plus code: GQV4+C3 Accra</div>
+        </div>
+      </div>
+      <div class="info-line">
+        <div class="label">Phone</div>
+        <div class="val"><a href="tel:0208420119">020 842 0119</a></div>
+      </div>
+      <div class="info-line">
+        <div class="label">Hours</div>
+        <div class="val">Opens 8:30 AM
+          <div class="sub">Call ahead to confirm today's hours</div>
+        </div>
+      </div>
+      <div class="info-line">
+        <div class="label">Online</div>
+        <div class="val"><a href="https://raysautopolishes.com" target="_blank" rel="noopener">raysautopolishes.com</a></div>
+      </div>
+    </div>
+
+    <div class="map-card">
+      <div>
+        <div class="pin">📍</div>
+        <h3>Sakumo Crescent, Accra</h3>
+        <p>H/No, A366/4 Sakumo Cres — look up the plus code GQV4+C3 Accra in Google Maps, or tap below for directions.</p>
+      </div>
+      <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Ray%27s+Auto+Polishes+Gh+Detail+Garage+A366%2F4+Sakumo+Cres+Accra" target="_blank" rel="noopener">Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="brand">Ray's Auto Polishes <span style="opacity:.5">· Detail Garage</span></div>
+    <div>H/No, A366/4 Sakumo Cres, Accra · 020 842 0119</div>
+    <div>© 2026 Ray's Auto Polishes Gh</div>
+  </div>
+</footer>
+
+</body>
+</html>
